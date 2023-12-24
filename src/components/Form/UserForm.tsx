@@ -1,14 +1,20 @@
 import { useState } from "react";
-import { FormField } from "./FormField";
 import { formFields } from "./FormUtils";
+import { FormField } from "./FormField";
 
 export const UserForm = () => {
 	const [formValues, setFormValues] = useState<{ [key: string]: string }>({});
 
-	const handleChange = (fieldName: string, value: string) => {
+	const handleChange = (
+		fieldName: string,
+		e:
+			| React.ChangeEvent<HTMLTextAreaElement>
+			| React.ChangeEvent<HTMLSelectElement>
+			| React.ChangeEvent<HTMLInputElement>,
+	) => {
 		setFormValues(prevValues => ({
 			...prevValues,
-			[fieldName]: value,
+			[fieldName]: e.target.value, // this is the same syntax as useState's type info
 		}));
 	};
 
@@ -17,13 +23,12 @@ export const UserForm = () => {
 			{Object.entries(formFields).map(([key, value]) => (
 				<FormField
 					type="input"
-					field={key}
 					inputType={value.type}
+					key={key}
+					field={key}
 					placeholder={value.placeholder}
 					value={formValues[key] || ""}
-					onChange={e => handleChange(key, e.target.value)}
-					// index={i}
-					key={key}
+					onChange={e => handleChange(key, e)}
 				/>
 			))}
 		</form>

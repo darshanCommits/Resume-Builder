@@ -1,50 +1,22 @@
-type inputElement = "textarea" | "input";
+import React from "react";
+import { InputField } from "./InputField";
+import { OptionsField } from "./OptionsField";
+import { TextareaField } from "./TextAreaField";
+import { FormFieldProps } from "./sharedType";
 
-interface FormFieldProps {
-	type: inputElement;
-	field: string;
-	inputType: string;
-	placeholder: string;
-	// index: number;
-	value: string;
-	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-export const FormField = ({
-	field,
-	inputType,
-	placeholder,
-	value,
-	onChange,
-}: FormFieldProps) => {
+export const FormField: React.FC<FormFieldProps> = (props: FormFieldProps) => {
 	const camelToTitleCase = (str: string) => {
 		const x = str.replace(/_/g, " ");
-		return `${x.charAt(0).toUpperCase()}${x.slice(1)}`;
+		return `${x.charAt(0).toUpperCase()}${x.slice(1)} :`;
 	};
 
 	return (
-		<div key={field} className="grid place-content-around ">
-			<label htmlFor={field} className="">
-				{camelToTitleCase(field)}:
-			</label>
-			{inputType === "textarea" ? (
-				<textarea
-					name={field}
-					value={value}
-					placeholder={placeholder}
-					onChange={e => onChange(e.target.value)}
-					rows={4}
-					cols={50}
-				/>
-			) : (
-				<input
-					type={inputType}
-					name={field}
-					value={value}
-					placeholder={placeholder}
-					onChange={e => onChange(e.target.value)}
-				/>
-			)}{" "}
+		<div key={props.field} className="grid place-content-around">
+			<label htmlFor={props.field}>{camelToTitleCase(props.field)}</label>
+
+			{props.type === "textarea" && <TextareaField {...props} />}
+			{props.type === "input" && <InputField {...props} />}
+			{props.type === "options" && <OptionsField {...props} />}
 		</div>
 	);
 };
