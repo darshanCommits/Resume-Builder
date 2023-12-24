@@ -19,7 +19,7 @@ export type TextAreaFieldProps = BaseFieldProps & {
 	cols: number;
 };
 
-export type OptionsFieldProps = BaseFieldProps & {
+export type SelectFieldProps = BaseFieldProps & {
 	type: "options";
 	options: string[]; // Options for the dropdown
 	onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -28,4 +28,4 @@ export type OptionsFieldProps = BaseFieldProps & {
 export type FormFieldProps =
 	| InputFieldProps
 	| TextAreaFieldProps
-	| OptionsFieldProps;
+	| SelectFieldProps;

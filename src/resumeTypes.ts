@@ -1,19 +1,31 @@
-type Range<T extends number> = {
-	level: T;
-};
+type TypeOfStudyOptions =
+	| "highschool"
+	| "bachelors"
+	| "masters"
+	| "doctorate"
+	| "dimploma";
 
-type Textarea = {
-	cols: number;
-	rows: number;
+type InputRange<T extends number> = {
+	level: T;
 };
 
 type WebsiteInfo = {
 	website?: string;
-	summary?: Textarea;
+	summary?: string;
 };
 
 type DateInfo = {
 	date_or_date_range?: Date;
+};
+
+type BasicSchema = {
+	full_name: string;
+	headline?: string;
+	email?: string;
+	website?: string;
+	phone?: string;
+	location?: string;
+	summary?: string;
 };
 
 type ProfileSchema = WebsiteInfo & {
@@ -31,14 +43,14 @@ type ExperienceSchema = WebsiteInfo &
 type EducationSchema = WebsiteInfo &
 	DateInfo & {
 		institution: string;
-		type_of_study: string; // datalist element
+		type_of_study: TypeOfStudyOptions;
 		area_of_study: string;
 		score?: string;
 	};
 
 type LanguageSchema = {
 	name: string;
-	level: Range<5>; // input element range
+	level: InputRange<5>; // input element range
 	description?: string;
 };
 
@@ -64,6 +76,17 @@ type ProjectSchema = DateInfo &
 		keywords: string[];
 	};
 
-type HobbieSchema = {
-	name: string[];
+type HobbiesSchema = string[];
+
+type ResumeSchema = {
+	about: BasicSchema;
+	profile: ProfileSchema;
+	experiences: ExperienceSchema[];
+	educations: EducationSchema[];
+	languages: LanguageSchema[];
+	skills: SkillSchema[];
+	awards: AwardSchema[];
+	certificates: CertificateSchema[];
+	projects: ProjectSchema[];
+	hobbies: HobbiesSchema;
 };

@@ -1,7 +1,7 @@
 import React from "react";
-import { OptionsFieldProps } from "./sharedType";
+import { SelectFieldProps } from "./sharedType";
 
-export const OptionsField: React.FC<OptionsFieldProps> = ({
+export const SelectField: React.FC<SelectFieldProps> = ({
 	field,
 	value,
 	onChange,

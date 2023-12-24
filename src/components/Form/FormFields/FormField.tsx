@@ -1,6 +1,6 @@
 import React from "react";
 import { InputField } from "./InputField";
-import { OptionsField } from "./OptionsField";
+import { SelectField } from "./SelectField";
 import { TextareaField } from "./TextAreaField";
 import { FormFieldProps } from "./sharedType";
 
@@ -16,7 +16,7 @@ export const FormField: React.FC<FormFieldProps> = (props: FormFieldProps) => {
 
 			{props.type === "textarea" && <TextareaField {...props} />}
 			{props.type === "input" && <InputField {...props} />}
-			{props.type === "options" && <OptionsField {...props} />}
+			{props.type === "options" && <SelectField {...props} />}
 		</div>
 	);
 };

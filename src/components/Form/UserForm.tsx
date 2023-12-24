@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { formFields } from "./FormUtils";
-import { FormField } from "./FormField";
+import formFields from "./generateFromSchema/BasicInfo";
+import FormField from "./FormFields/FormField";
 
 export const UserForm = () => {
 	const [formValues, setFormValues] = useState<{ [key: string]: string }>({});
