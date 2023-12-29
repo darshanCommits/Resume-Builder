@@ -1,16 +1,15 @@
-import React from "react";
 import { TextAreaFieldProps } from "./sharedType";
 
-export const TextareaField: React.FC<TextAreaFieldProps> = ({
-	field,
+export const TextAreaField = ({
+	label,
 	placeholder,
 	value,
 	onChange,
 	rows,
 	cols,
-}) => (
+}: TextAreaFieldProps) => (
 	<textarea
-		name={field}
+		name={label}
 		value={value}
 		placeholder={placeholder}
 		onChange={onChange}

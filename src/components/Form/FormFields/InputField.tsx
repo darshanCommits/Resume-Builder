@@ -1,16 +1,16 @@
-import React from "react";
 import { InputFieldProps } from "./sharedType";
 
-export const InputField: React.FC<InputFieldProps> = ({
-	field,
+export const InputField = ({
+	label,
 	placeholder,
 	value,
 	onChange,
 	inputType,
-}) => (
+}: InputFieldProps) => (
 	<input
+		className="flex h-9 w-full rounded border bg-transparent px-3 py-0.5 !text-sm ring-0 ring-offset-transparent transition-colors [appearance:textfield] placeholder:opacity-80 hover:bg-secondary/20 focus:border-primary focus:bg-secondary/20 focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none file:border-0 file:bg-transparent file:pt-1 file:text-sm file:font-medium file:text-primary border-border"
 		type={inputType}
-		name={field}
+		name={label}
 		value={value}
 		placeholder={placeholder}
 		onChange={onChange}
