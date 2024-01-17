@@ -1,29 +1,59 @@
-import { ReactNode } from "react";
 import { ResumeSchema } from "@/components/resumeTypes";
-import { RenderMultiInput, snakeToTitleCase } from "./FormFields/InputField";
-type GenericRecord = Record<string, string>;
+import { HTMLInputTypeAttribute, ReactNode } from "react";
+import Input from "./FormFields/InputField";
+import { snakeToTitleCase } from "./FormFields/snakeToTitleCase";
+
+const getType = (name: string): HTMLInputTypeAttribute => {
+	switch (name) {
+		case "phone":
+			return "tel";
+		case "email":
+			return "email";
+		default:
+			return "text";
+	}
+};
+
+type SectionProps = {
+	data: ResumeSchema[keyof ResumeSchema];
+	section: keyof ResumeSchema;
+	onChange: (
+		section: keyof ResumeSchema,
+		fieldName: string,
+		value: string,
+	) => void;
+	values: any;
+	children?: ReactNode;
+};
 
 export const GenericSection = ({
+	data,
 	section,
+	onChange,
+	values,
 	children,
-	...props
-}: {
-	section: keyof ResumeSchema;
-	data: GenericRecord | GenericRecord[];
-	onChange: (section: string, fieldName: string, value: string) => void;
-	values: Record<string, string>;
-	children?: ReactNode;
-}) => {
+}: SectionProps) => {
 	return (
-		<section>
-			<h1 className="text-xl text-red-500">{snakeToTitleCase(section)}</h1>
-			<RenderMultiInput
-				{...props}
-				section={section}
-				data={Array.isArray(props.data) ? props.data[0] : props.data}
-			/>
+		<fieldset>
+			<legend className="text-xl text-red-500">
+				{snakeToTitleCase(section)}:
+			</legend>
+
+			{Object.entries(Array.isArray(data) ? data[0] : data)
+				.filter(([key]) => key !== "summary")
+				.map(([key, placeholder]) => (
+					<Input
+						section={section}
+						key={key}
+						name={key}
+						value={values[key]}
+						type={getType(key)}
+						onChange={onChange}
+						placeholder={String(placeholder)}
+					/>
+				))}
 			{children}
-		</section>
+		</fieldset>
 	);
 };
 

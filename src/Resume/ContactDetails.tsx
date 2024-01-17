@@ -1,16 +1,10 @@
-import React from "react";
-
 type ContactDetailProps = {
 	icon: string;
 	content: string;
 	link?: string;
 };
 
-const ContactDetail: React.FC<ContactDetailProps> = ({
-	icon,
-	content,
-	link = "",
-}) => {
+const ContactDetail = ({ icon, content, link = "" }: ContactDetailProps) => {
 	const iconStyle = `text-primary ph ph-bold ${icon || ""}`;
 
 	return (
