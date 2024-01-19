@@ -1,4 +1,4 @@
-import { ResumeSchema } from "./resumeTypes";
+import { ResumeSchema } from "@models/resumeTypes";
 
 export const exampleResume: ResumeSchema = {
 	about: {

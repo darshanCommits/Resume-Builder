@@ -1,4 +1,5 @@
-import { ResumeSchema } from "@/components/resumeTypes";
+import { ResumeSchema } from "@models/resumeTypes";
+import { snakeToTitleCase } from "@utils/utils";
 import { HTMLInputTypeAttribute } from "react";
 
 type InputProps = {
@@ -7,13 +8,6 @@ type InputProps = {
 	placeholder: string;
 	section: keyof ResumeSchema;
 };
-
-export const snakeToTitleCase = (str: string) =>
-	str
-		.replaceAll("_", " ")
-		.split(" ")
-		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(" ");
 
 const Input = ({ section, name, ...props }: InputProps) => {
 	const inputStyles = "h-9 w-full border bg-transparent px-3";
