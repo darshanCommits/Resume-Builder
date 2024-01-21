@@ -73,7 +73,7 @@ export type ProjectSchema = DateInfo &
 
 export type ResumeSchema = {
 	about: BasicSchema;
-	profile: ProfileSchema;
+	profile: ProfileSchema[];
 	experiences: ExperienceSchema[];
 	education: EducationSchema[];
 	projects: ProjectSchema[];
@@ -84,8 +84,13 @@ export type ResumeSchema = {
 	hobbies: string[];
 };
 
-export type SectionKeyType = keyof ResumeSchema; // gets the keys of the ResumeSchema
+export type SectionKeys = keyof ResumeSchema;
+export type SectionKeyTypes = ResumeSchema[SectionKeys];
 
-export type SectionInferFn = <TSection extends SectionKeyType>(
+export type SectionInferFn = <TSection extends SectionKeys>(
 	section: TSection,
 ) => ResumeSchema[TSection];
+
+export type RefObjectMap<T> = {
+	[key: string]: React.RefObject<T>;
+};

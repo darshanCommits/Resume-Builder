@@ -1,4 +1,10 @@
-import { SelectFieldProps } from "./sharedType";
+export type SelectFieldProps = {
+	label: string;
+	placeholder?: string;
+	value: string;
+	options: string[];
+	onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+};
 
 export const SelectField = ({
 	label,

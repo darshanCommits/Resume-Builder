@@ -6,10 +6,18 @@ export const capitalize = (word: string) =>
 export const snakeToTitleCase = (str: string) =>
 	str.replaceAll("_", " ").split(" ").map(capitalize).join(" ");
 
-export const toggleDialog = (dialogRef: RefObject<HTMLDialogElement>) => {
-	if (!dialogRef.current) return;
+export const toggleDialog = (ref: RefObject<HTMLDialogElement>) => {
+	console.log(ref);
+	if (!ref.current) return;
 
-	dialogRef.current.open
-		? dialogRef.current.close()
-		: dialogRef.current.showModal();
+	ref.current.open ? ref.current.close() : ref.current.showModal();
 };
+
+export const isStringArray = (value: unknown): value is string[] =>
+	Array.isArray(value) && value.every(item => typeof item === "string");
+
+export const isRecordArray = (
+	value: unknown,
+): value is Record<string, unknown>[] =>
+	Array.isArray(value) &&
+	value.every(item => typeof item === "object" && item !== null);
