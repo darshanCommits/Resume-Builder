@@ -1,6 +1,6 @@
+import { BasicSchema } from "@/components/resumeTypes";
 import React from "react";
 import ContactDetail from "./ContactDetails";
-import { BasicSchema } from "@/components/resumeTypes";
 
 const ResumeSummary: React.FC<{ summary: string }> = ({ summary }) => (
 	<section id="summary">
