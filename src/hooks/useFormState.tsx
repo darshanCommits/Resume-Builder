@@ -1,7 +1,7 @@
 import { convertToEmptyObj } from "@utils/utils";
 import { useState } from "react";
 
-export function useFormState<T extends Record<string, string>>(
+export function useFormState<T extends Record<string, string | string[]>>(
 	initialValue: T,
 ) {
 	const [formValue, setValue] = useState(convertToEmptyObj(initialValue));
@@ -11,7 +11,6 @@ export function useFormState<T extends Record<string, string>>(
 			...prevValue,
 			[label]: inputValue,
 		}));
-		// onChange({ ...value, [label]: inputValue });
 	};
 
 	return { formValue, setFormValue } as const;

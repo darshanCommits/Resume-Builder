@@ -1,25 +1,12 @@
-import { SectionKeys, SectionKeyTypes } from "@models/resumeTypes";
-import Input from "@ui/Input";
-import FormSectionHeading from "@ui/FormSectionHeading";
+import { snakeToTitleCase } from "@utils/utils";
 
-export const FieldSet = ({
-	placeholders,
-	section,
-}: {
-	placeholders: SectionKeyTypes;
-	section: SectionKeys;
-}) => {
+export function FieldSet({ sec, children }) {
 	return (
-		<fieldset>
-			<FormSectionHeading sec={section} />
-			{Object.entries(placeholders).map(([label, placeholder]) => (
-				<Input
-					key={label}
-					type={label === "summary" ? "textarea" : "text"}
-					label={label}
-					placeholder={placeholder}
-				/>
-			))}
+		<fieldset id={`form__${sec}`} key={sec}>
+			<legend className="text-3xl text-red-500">{snakeToTitleCase(sec)}</legend>
+			{children}
 		</fieldset>
 	);
-};
+}
+
+export default FieldSet;

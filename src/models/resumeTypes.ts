@@ -3,18 +3,18 @@ export type TypeOfStudyOptions =
 	| "bachelors"
 	| "masters"
 	| "doctorate"
-	| "dimploma";
+	| "diploma";
 
-export type WebsiteInfo = {
+type Website = {
 	website?: string;
 	summary?: string;
 };
 
-export type DateInfo = {
+type Date = {
 	date_or_date_range?: string;
 };
 
-export type BasicSchema = WebsiteInfo & {
+export type AboutSchema = Website & {
 	full_name: string;
 	headline: string;
 	email: string;
@@ -22,70 +22,52 @@ export type BasicSchema = WebsiteInfo & {
 	location: string;
 };
 
-export type ProfileSchema = WebsiteInfo & {
+export type ProfileSchema = Website & {
 	network: string;
 	username: string;
 };
 
-export type ExperienceSchema = WebsiteInfo &
-	DateInfo & {
+export type ExperienceSchema = Website &
+	Date & {
 		company: string;
 		position: string;
 		location: string;
 	};
 
-export type EducationSchema = WebsiteInfo &
-	DateInfo & {
+export type EducationSchema = Website &
+	Date & {
 		institution: string;
 		type_of_study: TypeOfStudyOptions;
 		area_of_study: string;
 		score: string;
 	};
 
-export type LanguageSchema = {
+export type SkillSchema = {
 	name: string;
-	level: number;
+	level: string;
 	description: string;
-};
-
-export type SkillSchema = LanguageSchema & {
 	keywords: string[];
 };
 
-export type AwardSchema = WebsiteInfo &
-	DateInfo & {
-		title: string;
-		awarder: string;
-	};
-
-export type CertificateSchema = DateInfo &
-	WebsiteInfo & {
-		name: string;
-		issuer: string;
-	};
-
-export type ProjectSchema = DateInfo &
-	WebsiteInfo & {
+export type ProjectSchema = Date &
+	Website & {
 		name: string;
 		keywords: string[];
 		summary: string;
 	};
 
 export type ResumeSchema = {
-	about: BasicSchema;
+	about: AboutSchema;
 	profile: ProfileSchema[];
 	experiences: ExperienceSchema[];
 	education: EducationSchema[];
 	projects: ProjectSchema[];
 	skills: SkillSchema[];
-	languages: LanguageSchema[];
-	awards: AwardSchema[];
-	certificates: CertificateSchema[];
-	hobbies: string[];
 };
 
 export type SectionKeys = keyof ResumeSchema;
 export type SectionKeyTypes = ResumeSchema[SectionKeys];
+export type ArraySectionTypes = Exclude<SectionKeyTypes, AboutSchema>;
 
 export type SectionInferFn = <TSection extends SectionKeys>(
 	section: TSection,

@@ -8,6 +8,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@ui/*": ["./src/components/ui/*"],
+			"@form/*": ["./src/components/Form/*"],
 			"@data/*": ["./src/data/*"],
 			"@components/*": ["./src/components/*"],
 			"@utils/*": ["./src/utils/*"],

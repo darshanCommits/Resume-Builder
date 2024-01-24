@@ -1,7 +1,11 @@
 import UserForm from "@components/Form/UserForm";
 
 const App = () => {
-	return <UserForm />;
+	return (
+		<>
+			<UserForm />
+		</>
+	);
 };
 
 export default App;
