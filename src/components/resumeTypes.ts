@@ -1,13 +1,13 @@
 export type TypeOfStudyOptions =
-	| "highschool"
 	| "bachelors"
-	| "masters"
+	| "dimploma"
 	| "doctorate"
-	| "dimploma";
+	| "highschool"
+	| "masters";
 
 export type WebsiteInfo = {
-	website?: string;
 	summary?: string;
+	website?: string;
 };
 
 export type DateInfo = {
@@ -15,11 +15,11 @@ export type DateInfo = {
 };
 
 export type BasicSchema = WebsiteInfo & {
+	email: string;
 	full_name: string;
 	headline: string;
-	email: string;
-	phone: string;
 	location: string;
+	phone: string;
 };
 
 export type ProfileSchema = WebsiteInfo & {
@@ -30,22 +30,22 @@ export type ProfileSchema = WebsiteInfo & {
 export type ExperienceSchema = WebsiteInfo &
 	DateInfo & {
 		company: string;
-		position: string;
 		location: string;
+		position: string;
 	};
 
 export type EducationSchema = WebsiteInfo &
 	DateInfo & {
-		institution: string;
-		type_of_study: TypeOfStudyOptions;
 		area_of_study: string;
+		institution: string;
 		score: string;
+		type_of_study: TypeOfStudyOptions;
 	};
 
 export type LanguageSchema = {
-	name: string;
-	level: number;
 	description: string;
+	level: number;
+	name: string;
 };
 
 export type SkillSchema = LanguageSchema & {
@@ -54,34 +54,34 @@ export type SkillSchema = LanguageSchema & {
 
 export type AwardSchema = WebsiteInfo &
 	DateInfo & {
-		title: string;
 		awarder: string;
+		title: string;
 	};
 
 export type CertificateSchema = DateInfo &
 	WebsiteInfo & {
-		name: string;
 		issuer: string;
+		name: string;
 	};
 
 export type ProjectSchema = DateInfo &
 	WebsiteInfo & {
-		name: string;
 		keywords: string[];
+		name: string;
 		summary: string;
 	};
 
 export type ResumeSchema = {
 	about: BasicSchema;
-	profile: ProfileSchema;
-	experiences: ExperienceSchema[];
-	education: EducationSchema[];
-	projects: ProjectSchema[];
-	skills: SkillSchema[];
-	languages: LanguageSchema[];
 	awards: AwardSchema[];
 	certificates: CertificateSchema[];
+	education: EducationSchema[];
+	experiences: ExperienceSchema[];
 	hobbies: string[];
+	languages: LanguageSchema[];
+	profile: ProfileSchema;
+	projects: ProjectSchema[];
+	skills: SkillSchema[];
 };
 
 export type SectionKeyType = keyof ResumeSchema; // gets the keys of the ResumeSchema
