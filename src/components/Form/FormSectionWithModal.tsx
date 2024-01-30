@@ -1,23 +1,18 @@
 import FieldSet from "@components/Form/FieldSet";
+import { SectionWOModalProps } from "@models/propTypes";
 import { Button } from "@ui/Button";
 import FormSectionHeading from "@ui/FormSectionHeading";
 import Input from "@ui/Input";
-import { SectionWOModalProps, modalRefs, toggleDialog } from "@utils/utils";
 import Modal from "./Modal";
+import { toggleDialog, modalRefs } from "@utils/utils";
 
 export function SectionWithModal<T>({
 	sec,
 	placeholders,
 	formValue,
 	setFormValue,
+	onClick,
 }: SectionWOModalProps<T>) {
-	const bruh = Object.entries(placeholders[0]).forEach(
-		([label, placeholder]) => {
-			// console.table(formValue[label]);
-			// console.log();
-		},
-	);
-
 	return (
 		<FieldSet sec={sec}>
 			<Modal
@@ -40,7 +35,7 @@ export function SectionWithModal<T>({
 						}}
 					/>
 				))}
-				<Button className="float-end" type="button">
+				<Button className="float-end" type="button" onClick={onClick}>
 					Save
 				</Button>
 			</Modal>

@@ -1,10 +1,5 @@
 import exampleResume from "@data/exampleResume";
-import {
-	ArraySectionTypes,
-	RefObjectMap,
-	SectionKeyTypes,
-	SectionKeys,
-} from "@models/resumeTypes";
+import { RefObjectMap, SectionKeys } from "@models/resumeTypes";
 import { RefObject, createRef } from "react";
 
 export const capitalize = (word: string) =>
@@ -32,8 +27,12 @@ export const isRecordArray = (
 	Array.isArray(value) &&
 	value.every(item => typeof item === "object" && item !== null);
 
-export const isArraySectionKey = (obj: any): obj is ArraySectionKeyTypes =>
-	Array.isArray(obj) && obj.every(item => typeof item === "object");
+export function convertToEmptyObj<T extends Record<string, any>>(obj: T) {
+	return Object.entries(obj).reduce((acc, [key, _]) => {
+		acc[key as keyof T] = "";
+		return acc;
+	}, {} as Record<keyof T, string>);
+}
 
 export const modalRefs: RefObjectMap<HTMLDialogElement> = sectionList
 	.filter(sec => isRecordArray(exampleResume[sec]))
@@ -41,28 +40,3 @@ export const modalRefs: RefObjectMap<HTMLDialogElement> = sectionList
 		acc[curr] = createRef();
 		return acc;
 	}, {});
-
-export type Props = {
-	onChange?: any;
-};
-
-export function convertToEmptyObj<T>(obj: T) {
-	return Object.entries(obj).reduce((acc, [key, _]) => {
-		acc[key] = "";
-		return acc;
-	}, {} as Record<keyof T, string>);
-}
-
-export type SectionWModalProps<T> = {
-	sec: SectionKeys;
-	placeholders: SectionKeyTypes;
-	formValue: Record<keyof T, string>;
-	setFormValue: (label: keyof T, value: string) => void;
-};
-
-export type SectionWOModalProps<T> = {
-	sec: SectionKeys;
-	placeholders: ArraySectionTypes;
-	formValue: Record<keyof T, string>;
-	setFormValue: (label: keyof T, value: string) => void;
-};

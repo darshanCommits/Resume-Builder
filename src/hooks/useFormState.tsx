@@ -13,7 +13,11 @@ export function useFormState<T extends Record<string, string | string[]>>(
 		}));
 	};
 
-	return { formValue, setFormValue } as const;
+	const resetFormValue = () => {
+		setValue(convertToEmptyObj(initialValue));
+	};
+
+	return { formValue, setFormValue, resetFormValue } as const;
 }
 
 export default useFormState;

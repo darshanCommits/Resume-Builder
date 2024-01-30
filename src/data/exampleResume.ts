@@ -28,10 +28,10 @@ export const profile: ProfileSchema[] = [
 
 export const experiences: ExperienceSchema[] = [
 	{
-		website: "www.fightclub.com",
-		date_or_date_range: "1999",
-		company: "Fight Club",
 		position: "Founder",
+		company: "Fight Club",
+		date_or_date_range: "1999",
+		website: "www.fightclub.com",
 		location: "Paper Street Soap Company Basement",
 		summary: "Started an underground boxing club",
 	},
@@ -39,12 +39,12 @@ export const experiences: ExperienceSchema[] = [
 
 export const education: EducationSchema[] = [
 	{
-		website: "www.fightclub.com",
-		date_or_date_range: "1999",
 		institution: "Fight Club",
 		type_of_study: "diploma",
-		area_of_study: "Soap Making",
+		date_or_date_range: "1999",
 		score: "A+",
+		website: "www.fightclub.com",
+		area_of_study: "Soap Making",
 		summary: "Learned how to make soap and explosives",
 	},
 ];
@@ -66,11 +66,11 @@ export const skills: SkillSchema[] = [
 
 export const projects: ProjectSchema[] = [
 	{
-		date_or_date_range: "1999",
-		website: "www.fightclub.com",
 		name: "Project Mayhem",
-		keywords: ["chemistry", "manufacturing"],
+		date_or_date_range: "1999",
 		summary: "The Things we own, End up owning you.",
+		website: "www.fightclub.com",
+		keywords: ["chemistry", "manufacturing"],
 	},
 ];
 
