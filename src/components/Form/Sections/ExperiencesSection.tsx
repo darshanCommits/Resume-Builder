@@ -1,38 +1,22 @@
 import useFormState from "@/hooks/useFormState";
+import useSavedCards from "@/hooks/useSavedCards";
 import { experiences } from "@data/exampleResume";
 import Card from "@form/Card";
 import FormSectionWithModal from "@form/FormSectionWithModal";
-import { toggleDialog, modalRefs } from "@utils/utils";
-import { ReactNode, useState } from "react";
 
-export const ExperiencesSection = () => {
-	const { resetFormValue, formValue, setFormValue } = useFormState(
-		experiences[0],
-	);
-
-	const [savedCards, setSavedCard] = useState<Record<string, string>[]>([]); // State to store the card
+export function ExperiencesSection() {
 	const sec = "experiences";
+	const { formValue, setFormValue, resetFormValues } =
+		useFormState<"experiences">(experiences[0]);
 
-	function addCard(header: string, footer: string, date: string) {
-		const card = {
-			header,
-			footer,
-			date,
-		};
-
-		setSavedCard([...savedCards, card]); // Store the card in state
-		resetFormValue();
-		toggleDialog(modalRefs[sec]);
-
-		return card;
-	}
+	const { savedCards, addCard } = useSavedCards(sec, resetFormValues);
 
 	return (
 		<>
 			<FormSectionWithModal
-				placeholders={experiences}
+				placeholders={experiences[0]}
 				sec={sec}
-				formValue={formValue}
+				formValues={formValue}
 				setFormValue={setFormValue}
 				onClick={() => {
 					addCard(
@@ -46,8 +30,7 @@ export const ExperiencesSection = () => {
 				<Card data={x} />
 			))}
 		</>
-		// here I want to render
 	);
-};
+}
 
 export default ExperiencesSection;

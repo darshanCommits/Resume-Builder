@@ -11,8 +11,6 @@ const UserForm = () => {
 				<ExperiencesSection />
 				<AboutSection />
 				<EducationSection />
-				<ProjectsSection />
-				<SkillsSection />
 			</form>
 		</aside>
 	);

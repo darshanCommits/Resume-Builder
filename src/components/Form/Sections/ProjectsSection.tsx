@@ -9,7 +9,7 @@ export const ProjectSection = () => {
 		<FormSectionWithModal
 			placeholders={projects}
 			sec={"projects"}
-			formValue={formValue}
+			formValues={formValue}
 			setFormValue={setFormValue}
 		/>
 	);

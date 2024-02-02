@@ -27,13 +27,6 @@ export const isRecordArray = (
 	Array.isArray(value) &&
 	value.every(item => typeof item === "object" && item !== null);
 
-export function convertToEmptyObj<T extends Record<string, any>>(obj: T) {
-	return Object.entries(obj).reduce((acc, [key, _]) => {
-		acc[key as keyof T] = "";
-		return acc;
-	}, {} as Record<keyof T, string>);
-}
-
 export const modalRefs: RefObjectMap<HTMLDialogElement> = sectionList
 	.filter(sec => isRecordArray(exampleResume[sec]))
 	.reduce((acc, curr) => {

@@ -83,9 +83,3 @@ export type ResumeSchema = {
 	projects: ProjectSchema[];
 	skills: SkillSchema[];
 };
-
-export type SectionKeyType = keyof ResumeSchema; // gets the keys of the ResumeSchema
-
-export type SectionInferFn = <TSection extends SectionKeyType>(
-	section: TSection,
-) => ResumeSchema[TSection];

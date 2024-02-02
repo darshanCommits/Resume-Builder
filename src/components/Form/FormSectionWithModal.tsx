@@ -5,11 +5,12 @@ import FormSectionHeading from "@ui/FormSectionHeading";
 import Input from "@ui/Input";
 import Modal from "./Modal";
 import { toggleDialog, modalRefs } from "@utils/utils";
+import { SingleSectionKeys } from "@models/resumeTypes";
 
-export function SectionWithModal<T>({
+export function SectionWithModal<T extends SingleSectionKeys>({
 	sec,
 	placeholders,
-	formValue,
+	formValues: formValue,
 	setFormValue,
 	onClick,
 }: SectionWOModalProps<T>) {
@@ -21,7 +22,7 @@ export function SectionWithModal<T>({
 				toggleDialog={() => toggleDialog(modalRefs[sec])}
 			>
 				<FormSectionHeading sec={sec} />
-				{Object.entries(placeholders[0]).map(([label, placeholder]) => (
+				{Object.entries(placeholders).map(([label, placeholder]) => (
 					<Input
 						section={sec}
 						name={label}
@@ -31,7 +32,7 @@ export function SectionWithModal<T>({
 						placeholder={placeholder.toString()}
 						value={formValue[label as keyof T] || ""}
 						onChange={e => {
-							setFormValue(label as keyof T, e.target.value);
+							setFormValue(label as T, e.target.value);
 						}}
 					/>
 				))}

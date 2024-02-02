@@ -11,7 +11,7 @@ type Website = {
 };
 
 type Date = {
-	date_or_date_range?: string;
+	date_or_date_range: string;
 };
 
 export type AboutSchema = Website & {
@@ -65,13 +65,36 @@ export type ResumeSchema = {
 	skills: SkillSchema[];
 };
 
-export type SectionKeys = keyof ResumeSchema;
-export type SectionKeyTypes = ResumeSchema[SectionKeys];
-export type ArraySectionTypes = Exclude<SectionKeyTypes, AboutSchema>;
+export type SingleSectionTypes = {
+	about: AboutSchema;
+	profile: ProfileSchema;
+	experiences: ExperienceSchema;
+	education: EducationSchema;
+	projects: ProjectSchema;
+	skills: SkillSchema;
+};
 
-export type SectionInferFn = <TSection extends SectionKeys>(
-	section: TSection,
-) => ResumeSchema[TSection];
+// export type SectionSchema<K extends SectionKeys> = K extends keyof ResumeSchema
+// 	? ResumeSchema[K]
+// 	: never;
+
+export type SectionKeys = keyof ResumeSchema;
+
+export type SingleSectionKeys =
+	| "about"
+	| "profile"
+	| "experiences"
+	| "education"
+	| "projects"
+	| "skills";
+
+export type SectionSchema<K extends SingleSectionKeys> =
+	K extends SingleSectionKeys ? ResumeSchema[K] : never;
+
+export type SingleSectionSchema<K extends SingleSectionKeys> =
+	K extends keyof SingleSectionTypes ? SingleSectionTypes[K] : never;
+
+export type ArraySectionTypes = Exclude<SectionSchema, AboutSchema>;
 
 export type RefObjectMap<T> = {
 	[key: string]: React.RefObject<T>;
