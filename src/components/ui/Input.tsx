@@ -1,9 +1,9 @@
 import { SectionKeys } from "@models/resumeTypes";
 import { snakeToTitleCase } from "@utils/utils";
 
-type InputProps = {
+type InputProps<T extends string> = {
 	name: string;
-	label?: string;
+	label?: T;
 	value: string;
 	type: "text" | "textarea";
 	placeholder: string;
@@ -13,7 +13,13 @@ type InputProps = {
 	) => void;
 };
 
-export const Input = ({ name, label, type, section, ...props }: InputProps) => {
+export function Input<T extends string>({
+	name,
+	label,
+	type,
+	section,
+	...props
+}: InputProps<T>) {
 	const commonStyles = "w-full border bg-transparent p-3";
 	return (
 		<label className="text-sm">
@@ -25,6 +31,6 @@ export const Input = ({ name, label, type, section, ...props }: InputProps) => {
 			)}
 		</label>
 	);
-};
+}
 
 export default Input;

@@ -1,15 +1,15 @@
 import useFormState from "@/hooks/useFormState";
 import { about } from "@data/exampleResume";
-import FormSectionWithoutModal from "@form/FormSectionWithoutModal";
+import SectionWOModal from "@form/FormSectionWithoutModal";
 
 export const AboutSection = () => {
 	const { formValue, setFormValue } = useFormState(about);
 
 	return (
-		<FormSectionWithoutModal
+		<SectionWOModal
 			sec={"about"}
 			placeholders={about}
-			formValue={formValue}
+			formValues={formValue}
 			setFormValue={setFormValue}
 		/>
 	);

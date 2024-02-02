@@ -1,43 +1,37 @@
-import {
-	SectionKeys,
-	SingleSectionKeys,
-	SingleSectionSchema,
-} from "@models/resumeTypes";
+import { SectionKeys, SingleSectionSchema } from "@models/resumeTypes";
 import { useState } from "react";
 
-export type Keys<T> = T extends (infer U)[] ? keyof U : keyof T;
-
-export function convertToEmptyObj<T extends SingleSectionKeys>(
-	obj: SingleSectionSchema<T>,
-) {
+export function convertToEmptyObj<
+	T extends SectionKeys,
+	K extends SingleSectionSchema<T>,
+>(obj: K) {
 	return Object.entries(obj).reduce((acc, [key, _]) => {
 		acc[key] = "";
 		return acc;
-	}, {}) as SingleSectionSchema<T>;
+	}, {}) as K;
 }
 
-function getRecordIfArray<K extends SingleSectionKeys>(
-	value: SingleSectionSchema<K>,
-): SingleSectionSchema<K> {
+function getRecordIfArray<
+	K extends SectionKeys,
+	T extends SingleSectionSchema<K>,
+>(value: T): T {
 	return Array.isArray(value) ? value[0] : value;
 }
 
-function useFormState<K extends SectionKeys>(
-	initialValue: SingleSectionSchema<K>,
+function useFormState<T extends SectionKeys, K extends SingleSectionSchema<T>>(
+	initialValue: K,
 ): {
-	formValue: SingleSectionSchema<K>;
-	setFormValue: (label: K, value: string) => void;
+	formValue: K;
+	setFormValue: (label: T, value: string) => void;
 	resetFormValues: () => void;
 } {
-	const section: SingleSectionSchema<K> = Array.isArray(initialValue)
+	const section: K = Array.isArray(initialValue)
 		? initialValue[0]
 		: initialValue;
 
-	const [formValue, setValue] = useState<SingleSectionSchema<K>>(
-		convertToEmptyObj(section),
-	);
+	const [formValue, setValue] = useState<K>(convertToEmptyObj(section));
 
-	const setFormValue = (label: K, value: string) => {
+	const setFormValue = (label: T, value: string) => {
 		setValue(prevValue => ({
 			...prevValue,
 			[label]: value,

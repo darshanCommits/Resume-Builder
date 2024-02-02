@@ -1,19 +1,24 @@
 import FieldSet from "@components/Form/FieldSet";
-import { SectionWOModalProps } from "@models/propTypes";
+import { SectionProps } from "@models/propTypes";
+import { SectionKeys, SingleSectionSchema } from "@models/resumeTypes";
 import { Button } from "@ui/Button";
 import FormSectionHeading from "@ui/FormSectionHeading";
 import Input from "@ui/Input";
+import { modalRefs, toggleDialog } from "@utils/utils";
 import Modal from "./Modal";
-import { toggleDialog, modalRefs } from "@utils/utils";
-import { SingleSectionKeys } from "@models/resumeTypes";
 
-export function SectionWithModal<T extends SingleSectionKeys>({
+function SectionWithModal<
+	T extends SectionKeys,
+	K extends SingleSectionSchema<T>,
+>({
 	sec,
 	placeholders,
-	formValues: formValue,
+	formValues,
 	setFormValue,
 	onClick,
-}: SectionWOModalProps<T>) {
+}: SectionProps<T, K> & {
+	onClick?: () => void;
+}) {
 	return (
 		<FieldSet sec={sec}>
 			<Modal
@@ -22,20 +27,24 @@ export function SectionWithModal<T extends SingleSectionKeys>({
 				toggleDialog={() => toggleDialog(modalRefs[sec])}
 			>
 				<FormSectionHeading sec={sec} />
-				{Object.entries(placeholders).map(([label, placeholder]) => (
-					<Input
-						section={sec}
-						name={label}
-						key={label}
-						type={label === "summary" ? "textarea" : "text"}
-						label={label}
-						placeholder={placeholder.toString()}
-						value={formValue[label as keyof T] || ""}
-						onChange={e => {
-							setFormValue(label as T, e.target.value);
-						}}
-					/>
-				))}
+				{Object.entries(placeholders)
+					// I can't get this to correctly infer in one map
+					.map(([label, placeholder]) => {
+						return (
+							<Input
+								section={sec}
+								name={label}
+								key={`${sec}__${label}`}
+								type={(label as string) === "summary" ? "textarea" : "text"}
+								label={label}
+								placeholder={placeholder.toString()}
+								value={formValues[label] || ""}
+								onChange={e => {
+									setFormValue(label as T, e.target.value);
+								}}
+							/>
+						);
+					})}
 				<Button className="float-end" type="button" onClick={onClick}>
 					Save
 				</Button>

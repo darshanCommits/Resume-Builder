@@ -1,13 +1,16 @@
-import { education } from "@data/exampleResume";
 import useFormState from "@/hooks/useFormState";
-import FormSectionWithModal from "@form/FormSectionWithModal";
 import useSavedCards from "@/hooks/useSavedCards";
+import { education } from "@data/exampleResume";
 import Card from "@form/Card";
+import FormSectionWithModal from "@form/FormSectionWithModal";
+import { SingleSectionSchema } from "@models/resumeTypes";
 
 export function EducationSection() {
 	const sec = "education";
-	const { formValue, setFormValue, resetFormValues } =
-		useFormState<"education">(education[0]);
+	const { formValue, setFormValue, resetFormValues } = useFormState<
+		typeof sec,
+		SingleSectionSchema<typeof sec>
+	>(education[0]);
 
 	const { savedCards, addCard } = useSavedCards(sec, resetFormValues);
 

@@ -1,31 +1,32 @@
 import FieldSet from "@components/Form/FieldSet";
+import { SectionProps } from "@models/propTypes";
+import { SectionKeys, SingleSectionSchema } from "@models/resumeTypes";
 import Input from "@ui/Input";
-import { SectionWModalProps } from "@utils/utils";
 
-export function SectionWithoutModal<T>({
-	sec,
-	placeholders,
-	formValue,
-	setFormValue,
-}: SectionWModalProps<T>) {
+export function SectionWOModal<
+	T extends SectionKeys,
+	K extends SingleSectionSchema<T>,
+>({ sec, placeholders, formValues, setFormValue }: SectionProps<T, K>) {
 	return (
 		<FieldSet sec={sec}>
-			{Object.entries(placeholders).map(([label, placeholder]) => (
-				<Input
-					section={sec}
-					type={label === "summary" ? "textarea" : "text"}
-					name={label}
-					key={`${sec}__${label}`}
-					label={label}
-					placeholder={placeholder}
-					value={formValue[label as keyof T]}
-					onChange={e => {
-						setFormValue(label as keyof T, e.target.value);
-					}}
-				/>
-			))}
+			{Object.entries(placeholders).map(([label, placeholder]) => {
+				return (
+					<Input
+						section={sec}
+						type={label === "summary" ? "textarea" : "text"}
+						name={label}
+						key={`${sec}__${label}`}
+						label={label}
+						placeholder={placeholder.toString()}
+						value={formValues[label]}
+						onChange={e => {
+							setFormValue(label as T, e.target.value);
+						}}
+					/>
+				);
+			})}
 		</FieldSet>
 	);
 }
 
-export default SectionWithoutModal;
+export default SectionWOModal;

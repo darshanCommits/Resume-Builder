@@ -1,20 +1,11 @@
-import {
-	SingleSectionSchema,
-	SectionKeys,
-	SingleSectionKeys,
-} from "./resumeTypes";
+import { SectionKeys, SingleSectionSchema } from "@models/resumeTypes";
 
-export type SectionWModalProps<T extends SingleSectionKeys> = {
-	sec: SectionKeys;
-	placeholders: SingleSectionSchema<T>;
-	formValue: Record<keyof T, string>;
-	setFormValue: (label: keyof T, value: string) => void;
-};
-
-export type SectionWOModalProps<T extends SingleSectionKeys> = {
-	sec: SectionKeys;
-	placeholders: SingleSectionSchema<T>;
-	formValues: SingleSectionSchema<T>;
+export type SectionProps<
+	T extends SectionKeys,
+	K extends SingleSectionSchema<T>,
+> = {
+	sec: T;
+	formValues: K;
+	placeholders: K;
 	setFormValue: (label: T, value: string) => void;
-	onClick?: () => void;
 };

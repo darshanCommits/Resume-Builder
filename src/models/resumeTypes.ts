@@ -74,27 +74,16 @@ export type SingleSectionTypes = {
 	skills: SkillSchema;
 };
 
-// export type SectionSchema<K extends SectionKeys> = K extends keyof ResumeSchema
-// 	? ResumeSchema[K]
-// 	: never;
+export type SectionKeys = keyof SingleSectionTypes;
 
-export type SectionKeys = keyof ResumeSchema;
+export type SectionSchema<K extends SectionKeys> = K extends SectionKeys
+	? ResumeSchema[K]
+	: never;
 
-export type SingleSectionKeys =
-	| "about"
-	| "profile"
-	| "experiences"
-	| "education"
-	| "projects"
-	| "skills";
-
-export type SectionSchema<K extends SingleSectionKeys> =
-	K extends SingleSectionKeys ? ResumeSchema[K] : never;
-
-export type SingleSectionSchema<K extends SingleSectionKeys> =
+export type SingleSectionSchema<K extends SectionKeys> =
 	K extends keyof SingleSectionTypes ? SingleSectionTypes[K] : never;
 
-export type ArraySectionTypes = Exclude<SectionSchema, AboutSchema>;
+// export type ArraySectionTypes = Exclude<SectionSchema, AboutSchema>;
 
 export type RefObjectMap<T> = {
 	[key: string]: React.RefObject<T>;
