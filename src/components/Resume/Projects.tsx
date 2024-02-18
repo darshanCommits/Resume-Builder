@@ -1,17 +1,18 @@
 import { ProjectSchema } from "@models/resumeTypes";
 import { ResumeHeading, ResumeSummary } from "@ui/misc";
+import { snakeToTitleCase } from "@utils/utils";
 
 export const Projects = ({ props }: { props: ProjectSchema[] }) => {
 	return (
-		<section>
+		<section className="flex-col flex gap-2">
 			<ResumeHeading heading="projects" />
 			{props.map(project => {
 				return (
-					<section key={project.date_or_date_range} className="mb-4">
+					<section key={project.date_or_date_range}>
 						{project.keywords && (
-							<ul className="pl-3 font-semibold text-gray-600 text-md float-right ">
+							<ul className="pl-3 font-semibold text-gray-600 text-md float-right flex flex-col items-end">
 								{project.keywords.map(keyword => (
-									<li key={keyword}>{keyword}</li>
+									<li key={keyword}>{snakeToTitleCase(keyword)}</li>
 								))}
 							</ul>
 						)}

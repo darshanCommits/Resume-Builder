@@ -15,7 +15,7 @@ import Skills from "@components/Resume/Skills";
 
 const Resume = () => {
 	return (
-		<article className="p-8 ">
+		<main className="p-8 overflow-auto h-screen">
 			<About props={about} />
 			<ResumeHr />
 
@@ -29,7 +29,7 @@ const Resume = () => {
 			<ResumeHr />
 
 			<Skills props={skills} />
-		</article>
+		</main>
 	);
 };
 

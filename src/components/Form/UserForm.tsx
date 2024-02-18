@@ -7,7 +7,7 @@ import SocialSection from "./Sections/ProfileSection";
 
 const UserForm = () => {
 	return (
-		<form className="flex flex-col gap-5">
+		<form className="flex flex-col gap-5 bg-[#0D1117] text-white p-4 overflow-auto h-screen no-scrollbar">
 			<AboutSection />
 			<EducationSection />
 			<ExperiencesSection />

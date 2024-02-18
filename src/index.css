@@ -33,6 +33,7 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+    --focus-border: #af4444 !important;
   }
 
   .dark {
@@ -74,4 +75,38 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer utilities {
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--background);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #2D2228;
 }

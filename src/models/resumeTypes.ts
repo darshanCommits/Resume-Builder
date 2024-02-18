@@ -1,10 +1,3 @@
-export type TypeOfStudyOptions =
-	| "highschool"
-	| "bachelors"
-	| "masters"
-	| "doctorate"
-	| "diploma";
-
 type Website = {
 	website?: string;
 	summary?: string;
@@ -37,7 +30,7 @@ export type ExperienceSchema = Website &
 export type EducationSchema = Website &
 	Date & {
 		institution: string;
-		type_of_study: TypeOfStudyOptions;
+		type_of_study: string;
 		area_of_study: string;
 		score: string;
 	};

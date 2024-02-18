@@ -1,7 +1,7 @@
 import { snakeToTitleCase } from "@utils/utils";
 
 export const ResumeHeading = ({ heading }: { heading: string }) => (
-	<h2 className=" text-xl font-bold text-gray-800 print:font-normal">
+	<h2 className="text-xl font-bold text-gray-800 print:font-normal">
 		{snakeToTitleCase(heading)}
 	</h2>
 );
@@ -36,12 +36,12 @@ export const ResumeSummary = ({ content }: { content: string }) => {
 	return (
 		<>
 			{contentArray.length <= 1 && (
-				<p className="pl-3 font-normal text-gray-700 text-md leading-snugish">
+				<p className="pl-3 font-normal text-gray-700 text-md inline-block w-4/6">
 					{content}
 				</p>
 			)}
 			{contentArray.length > 1 && (
-				<ol className="pl-3 font-normal text-gray-700 text-md list-disc">
+				<ol className="pl-3 font-normal text-gray-700 text-md list-disc w-4/5">
 					{contentArray.map(point => (
 						<li>{point}</li>
 					))}

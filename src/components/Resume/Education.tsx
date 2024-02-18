@@ -4,10 +4,10 @@ import React from "react";
 
 const Education: React.FC<{ props: EducationSchema[] }> = ({ props }) => {
 	return (
-		<section className="break-inside-avoid">
+		<section className="break-inside-avoid flex-col flex gap-2">
 			<ResumeHeading heading="education" />
 			{props.map(props => (
-				<section className="break-inside-avoid">
+				<section className="break-inside-avoid" key={props.area_of_study}>
 					<div className="flex flex-col gap-2 items-end float-right font-semibold text-gray-600 ">
 						{props.score}
 						<a href={`https://${props.website}`}>{props.website}</a>

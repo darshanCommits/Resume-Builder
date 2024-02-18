@@ -3,14 +3,14 @@ import { ResumeHeading, ResumeSummary } from "@ui/misc";
 
 export const Experience = ({ props }: { props: ExperienceSchema[] }) => {
 	return (
-		<section className="break-inside-avoid">
+		<section className="break-inside-avoid flex-col flex gap-2">
 			<ResumeHeading heading="experience" />
 			{props.map(experience => (
 				<section
 					key={experience.date_or_date_range}
-					className="mb-4 break-inside-avoid"
+					className="break-inside-avoid"
 				>
-					<div className="font-semibold text-gray-600 float-right">
+					<div className="font-semibold text-gray-600 float-right flex flex-col items-end">
 						{experience.location}
 					</div>
 					<header className="mb-2">

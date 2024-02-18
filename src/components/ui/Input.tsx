@@ -28,7 +28,10 @@ export function Input<T extends string>({
 		<label className="text-sm">
 			{label && `${snakeToTitleCase(label)}:`}
 			{type === "textarea" ? (
-				<textarea className={`h-28 resize-none ${commonStyles}`} {...props} />
+				<textarea
+					className={`h-28 resize-none no-scrollbar ${commonStyles}`}
+					{...props}
+				/>
 			) : (
 				<input className={`h-9 ${commonStyles}`} {...props} />
 			)}

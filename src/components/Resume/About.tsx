@@ -1,3 +1,4 @@
+import { FaLinkedin } from "react-icons/fa";
 import { AboutSchema } from "@models/resumeTypes";
 import { ResumeLink } from "@ui/misc";
 
@@ -15,11 +16,13 @@ export const About = ({ props }: { props: AboutSchema }) => {
 						{props.full_name}
 						<sub className="text-sm text-gray-700">from {props.location}</sub>
 					</h1>
-					<h2 className="text-2xl font-semibold text-gray-700">
+					<h2 className="text-2xl font-semibold text-gray-700 flex items-center gap-2">
 						{props.headline}
+						<FaLinkedin />
 					</h2>
 				</div>
 			</header>
+			<p className="w-4/6 text-gray-700 text-md pl-3">{props.summary}</p>
 		</section>
 	);
 };
