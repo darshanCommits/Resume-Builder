@@ -2,7 +2,7 @@ import {
 	AboutSchema,
 	EducationSchema,
 	ExperienceSchema,
-	ProfileSchema,
+	SocialSchema,
 	ProjectSchema,
 	ResumeSchema,
 	SkillSchema,
@@ -14,11 +14,11 @@ export const about: AboutSchema = {
 	email: "tyler@fightclub.com",
 	website: "www.fightclub.com",
 	phone: "555-1999",
-	location: "Paper Street Soap Company",
+	location: "Underground",
 	summary: "Making and selling soap from human fat",
 };
 
-export const profile: ProfileSchema[] = [
+export const social: SocialSchema[] = [
 	{
 		network: "Fight Club",
 		username: "tylerd",
@@ -33,7 +33,10 @@ export const experiences: ExperienceSchema[] = [
 		date_or_date_range: "1999",
 		website: "www.fightclub.com",
 		location: "Paper Street Soap Company Basement",
-		summary: "Started an underground boxing club",
+		summary:
+			"Orchestrated a revolutionary underground movement, fostering self-discovery through unconventional means.\n\
+			 Pioneered an anarchic haven where rules dissolve, empowering individuals to reclaim their primal essence.\n\
+			 Crafted soap from human fat, transcending conventional boundaries to redefine societal norms.",
 	},
 ];
 
@@ -49,20 +52,7 @@ export const education: EducationSchema[] = [
 	},
 ];
 
-export const skills: SkillSchema[] = [
-	{
-		name: "Fighting",
-		level: "5",
-		keywords: ["boxing", "martial arts"],
-		description: "Expert fighter and founder of Fight Club",
-	},
-	{
-		name: "Soap Making",
-		level: "5",
-		keywords: ["chemistry", "manufacturing"],
-		description: "Expert soap maker using human fat",
-	},
-];
+export const skills: SkillSchema = ["Fighting", "Soap Making"];
 
 export const projects: ProjectSchema[] = [
 	{
@@ -76,7 +66,7 @@ export const projects: ProjectSchema[] = [
 
 export const exampleResume: ResumeSchema = {
 	about,
-	profile,
+	social,
 	experiences,
 	education,
 	skills,

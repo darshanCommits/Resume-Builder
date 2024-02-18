@@ -18,6 +18,7 @@ export function SectionWOModal<
 						key={`${sec}__${label}`}
 						label={label}
 						placeholder={placeholder.toString()}
+						// @ts-ignore. I am done with this.
 						value={formValues[label]}
 						onChange={e => {
 							setFormValue(label as T, e.target.value);

@@ -1,6 +1,13 @@
+import { SectionKeys } from "@models/resumeTypes";
 import { snakeToTitleCase } from "@utils/utils";
+import { ReactNode } from "react";
 
-export function FieldSet({ sec, children }) {
+type Props = {
+	sec: SectionKeys;
+	children: ReactNode;
+};
+
+export function FieldSet({ sec, children }: Props) {
 	return (
 		<fieldset id={`form__${sec}`} key={sec}>
 			<legend className="text-3xl text-red-500">{snakeToTitleCase(sec)}</legend>

@@ -1,6 +1,6 @@
 import { ResumeSchema } from "@/components/resumeTypes";
+import { snakeToTitleCase } from "@utils/utils";
 import { HTMLInputTypeAttribute } from "react";
-import { snakeToTitleCase } from "./snakeToTitleCase";
 
 type InputProps = {
 	name: string;

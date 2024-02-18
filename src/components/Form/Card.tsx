@@ -1,20 +1,32 @@
 import { IoMdClose } from "react-icons/io";
 type CardProps = {
-	data: Record<string, string>;
+	data: {
+		header: string;
+		footer: string;
+		date: string;
+	};
 	onClick?: (e: React.MouseEventHandler<SVGElement>) => void;
 };
 
-export const Card = ({ data, onClick }: CardProps) => {
+export const Card = ({ data }: CardProps | string) => {
+	const commonStyles = "relative border-red border border-solid";
+
 	return (
-		<div className="relative border-red border border-solid p-3 h-24 ">
+		<div className={`${commonStyles} p-3 `}>
 			<IoMdClose
 				size="20"
 				className="absolute right-0 top-0 m-3 cursor-pointer"
-				onClick={e => onClick(e)}
+				// onClick={e => onClick(e)}
 			/>
-			<h3 className="text-md mb-5">{data.header}</h3>
-			<span className="text-red-500 font-medium">{data.footer}</span>
-			<span className="float-end text-sm mt-2">{data.date}</span>
+
+			{typeof data === "string" && <h3 className="text-md mb-1">{data}</h3>}
+			{typeof data !== "string" && (
+				<>
+					<h3 className="text-md mb-5">{data.header}</h3>
+					<span className="text-red-500 font-medium">{data.footer}</span>
+					<span className="float-end text-sm mt-2">{data.date}</span>
+				</>
+			)}
 		</div>
 	);
 };

@@ -6,16 +6,17 @@ export function convertToEmptyObj<
 	K extends SingleSectionSchema<T>,
 >(obj: K) {
 	return Object.entries(obj).reduce((acc, [key, _]) => {
+		// @ts-ignore. I am done with this.
 		acc[key] = "";
 		return acc;
 	}, {}) as K;
 }
 
 function getRecordIfArray<
-	K extends SectionKeys,
-	T extends SingleSectionSchema<K>,
->(value: T): T {
-	return Array.isArray(value) ? value[0] : value;
+	T extends SectionKeys,
+	K extends SingleSectionSchema<T>,
+>(value: K) {
+	return (Array.isArray(value) ? value[0] : value) as K;
 }
 
 function useFormState<T extends SectionKeys, K extends SingleSectionSchema<T>>(
@@ -25,11 +26,8 @@ function useFormState<T extends SectionKeys, K extends SingleSectionSchema<T>>(
 	setFormValue: (label: T, value: string) => void;
 	resetFormValues: () => void;
 } {
-	const section: K = Array.isArray(initialValue)
-		? initialValue[0]
-		: initialValue;
-
-	const [formValue, setValue] = useState<K>(convertToEmptyObj(section));
+	const section = getRecordIfArray(initialValue);
+	const [formValue, setValue] = useState(convertToEmptyObj(section));
 
 	const setFormValue = (label: T, value: string) => {
 		setValue(prevValue => ({

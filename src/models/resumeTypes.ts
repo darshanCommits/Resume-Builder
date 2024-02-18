@@ -22,7 +22,7 @@ export type AboutSchema = Website & {
 	location: string;
 };
 
-export type ProfileSchema = Website & {
+export type SocialSchema = Website & {
 	network: string;
 	username: string;
 };
@@ -42,13 +42,6 @@ export type EducationSchema = Website &
 		score: string;
 	};
 
-export type SkillSchema = {
-	name: string;
-	level: string;
-	description: string;
-	keywords: string[];
-};
-
 export type ProjectSchema = Date &
 	Website & {
 		name: string;
@@ -56,18 +49,20 @@ export type ProjectSchema = Date &
 		summary: string;
 	};
 
+export type SkillSchema = string[];
+
 export type ResumeSchema = {
 	about: AboutSchema;
-	profile: ProfileSchema[];
+	social: SocialSchema[];
 	experiences: ExperienceSchema[];
 	education: EducationSchema[];
 	projects: ProjectSchema[];
-	skills: SkillSchema[];
+	skills: SkillSchema;
 };
 
 export type SingleSectionTypes = {
 	about: AboutSchema;
-	profile: ProfileSchema;
+	social: SocialSchema;
 	experiences: ExperienceSchema;
 	education: EducationSchema;
 	projects: ProjectSchema;
@@ -76,14 +71,7 @@ export type SingleSectionTypes = {
 
 export type SectionKeys = keyof SingleSectionTypes;
 
-export type SectionSchema<K extends SectionKeys> = K extends SectionKeys
-	? ResumeSchema[K]
-	: never;
-
-export type SingleSectionSchema<K extends SectionKeys> =
-	K extends keyof SingleSectionTypes ? SingleSectionTypes[K] : never;
-
-// export type ArraySectionTypes = Exclude<SectionSchema, AboutSchema>;
+export type SingleSectionSchema<T extends SectionKeys> = SingleSectionTypes[T];
 
 export type RefObjectMap<T> = {
 	[key: string]: React.RefObject<T>;

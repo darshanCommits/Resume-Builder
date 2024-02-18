@@ -30,6 +30,7 @@ export const isRecordArray = (
 export const modalRefs: RefObjectMap<HTMLDialogElement> = sectionList
 	.filter(sec => isRecordArray(exampleResume[sec]))
 	.reduce((acc, curr) => {
+		// @ts-ignore. I am done with this.
 		acc[curr] = createRef();
 		return acc;
 	}, {});

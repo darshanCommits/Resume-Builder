@@ -27,24 +27,23 @@ function SectionWithModal<
 				toggleDialog={() => toggleDialog(modalRefs[sec])}
 			>
 				<FormSectionHeading sec={sec} />
-				{Object.entries(placeholders)
-					// I can't get this to correctly infer in one map
-					.map(([label, placeholder]) => {
-						return (
-							<Input
-								section={sec}
-								name={label}
-								key={`${sec}__${label}`}
-								type={(label as string) === "summary" ? "textarea" : "text"}
-								label={label}
-								placeholder={placeholder.toString()}
-								value={formValues[label] || ""}
-								onChange={e => {
-									setFormValue(label as T, e.target.value);
-								}}
-							/>
-						);
-					})}
+				{Object.entries(placeholders).map(([label, placeholder]) => {
+					return (
+						<Input
+							section={sec}
+							name={label}
+							key={`${sec}__${label}`}
+							type={(label as string) === "summary" ? "textarea" : "text"}
+							label={label || ""}
+							placeholder={placeholder.toString()}
+							// @ts-ignore. I am done with this.
+							value={formValues[label] || ""}
+							onChange={e => {
+								setFormValue(label as T, e.target.value);
+							}}
+						/>
+					);
+				})}
 				<Button className="float-end" type="button" onClick={onClick}>
 					Save
 				</Button>

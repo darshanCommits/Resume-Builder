@@ -1,13 +1,15 @@
 import { SectionKeys } from "@models/resumeTypes";
 import { snakeToTitleCase } from "@utils/utils";
+import { ClassNameValue } from "tailwind-merge";
 
-type InputProps<T extends string> = {
-	name: string;
-	label?: T;
-	value: string;
+type InputProps<T> = {
+	name: string | T;
 	type: "text" | "textarea";
-	placeholder: string;
-	section: SectionKeys;
+	label?: T;
+	value?: string;
+	className?: string;
+	placeholder?: string;
+	section?: SectionKeys;
 	onChange?: (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
 	) => void;
@@ -18,9 +20,10 @@ export function Input<T extends string>({
 	label,
 	type,
 	section,
+	className,
 	...props
 }: InputProps<T>) {
-	const commonStyles = "w-full border bg-transparent p-3";
+	const commonStyles = `w-full border bg-transparent p-3 ${className}`;
 	return (
 		<label className="text-sm">
 			{label && `${snakeToTitleCase(label)}:`}
