@@ -1,9 +1,13 @@
-import { SectionKeys, SingleSectionSchema } from "@models/resumeTypes";
+import {
+	SectionKeys,
+	SectionSchema,
+	SingleSectionTypes,
+} from "@models/resumeTypes";
 import { useState } from "react";
 
 export function convertToEmptyObj<
 	T extends SectionKeys,
-	K extends SingleSectionSchema<T>,
+	K extends SingleSectionTypes[T],
 >(obj: K) {
 	return Object.entries(obj).reduce((acc, [key, _]) => {
 		// @ts-ignore. I am done with this.
@@ -12,17 +16,16 @@ export function convertToEmptyObj<
 	}, {}) as K;
 }
 
-function getRecordIfArray<
-	T extends SectionKeys,
-	K extends SingleSectionSchema<T>,
->(value: K) {
-	return (Array.isArray(value) ? value[0] : value) as K;
+function getRecordIfArray<K>(value: K) {
+	return (
+		Array.isArray(value) ? value[0] : value
+	) as SingleSectionTypes[SectionKeys];
 }
 
-function useFormState<T extends SectionKeys, K extends SingleSectionSchema<T>>(
+function useFormState<T extends SectionKeys, K extends SectionSchema<T>>(
 	initialValue: K,
 ): {
-	formValue: K;
+	formValue: SingleSectionTypes[T];
 	setFormValue: (label: T, value: string) => void;
 	resetFormValues: () => void;
 } {
@@ -41,7 +44,7 @@ function useFormState<T extends SectionKeys, K extends SingleSectionSchema<T>>(
 	};
 
 	return {
-		formValue: getRecordIfArray(formValue),
+		formValue,
 		setFormValue,
 		resetFormValues,
 	} as const;
