@@ -3,22 +3,22 @@ import useSavedCards from "@/hooks/useSavedCards";
 import { experiences } from "@data/exampleResume";
 import Card from "@form/Card";
 import FormSectionWithModal from "@form/FormSectionWithModal";
-import { SingleSectionSchema } from "@models/resumeTypes";
+import { SectionSchema } from "@models/resumeTypes";
 
 export function ExperiencesSection() {
 	const sec = "experiences";
 
 	const { formValue, setFormValue, resetFormValues } = useFormState<
 		typeof sec,
-		SingleSectionSchema<typeof sec>
-	>(experiences[0]);
+		SectionSchema<typeof sec>
+	>(experiences);
 
 	const { savedCards, addCard } = useSavedCards(sec, resetFormValues);
 
 	return (
 		<>
 			<FormSectionWithModal
-				placeholders={experiences[0]}
+				placeholders={experiences}
 				sec={sec}
 				formValues={formValue}
 				setFormValue={setFormValue}

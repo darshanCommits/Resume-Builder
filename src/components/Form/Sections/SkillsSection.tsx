@@ -3,46 +3,20 @@ import Card from "@form/Card";
 import Input from "@ui/Input";
 import { useState } from "react";
 
-// export const SkillSection = () => {
-// 	const sec = "skills";
-// 	const { formValue, setFormValue, resetFormValues } = useFormState<
-// 		typeof sec,
-// 		SingleSectionSchema<typeof sec>
-// 	>(skills[0]);
-
-// 	const { savedCards, addCard } = useSavedCards(sec, resetFormValues);
-
-// 	return (
-// 		<>
-// 			<FormSectionWithModal
-// 				placeholders={skills[0]}
-// 				sec={sec}
-// 				formValues={formValue}
-// 				setFormValue={setFormValue}
-// 				onClick={() => {
-// 					addCard(formValue.name, formValue.keywords.toString(), "");
-// 				}}
-// 			/>
-// 			{savedCards?.map(x => (
-// 				<Card data={x} />
-// 			))}
-// 		</>
-// 	);
-// };
-
 const SkillSection = () => {
-	const [value, setValue] = useState([]);
-	const [inputValue, setInputValue] = useState("");
+	const [skillStack, setSkillStack] = useState<string[]>([]);
+	const [value, setValue] = useState("");
 
-	const handleInputChange = e => {
-		setInputValue(e.target.value);
+	const handleInputChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+	) => {
+		setValue(e.target.value);
 	};
 
 	const handleAddSkill = () => {
-		if (inputValue.trim() !== "") {
-			setValue([...value, inputValue.trim()]);
-			setInputValue("");
-		}
+		if (value.trim() === "") return; // to check if the value is not null
+		setSkillStack([...skillStack, value.trim()]);
+		setValue(""); // to reset the input
 	};
 
 	return (
@@ -53,14 +27,14 @@ const SkillSection = () => {
 					placeholder="Fighting, Soap Making"
 					type="text"
 					className="my-0"
-					value={inputValue}
+					value={value}
 					onChange={handleInputChange}
 				/>
 				<button type="button" className="mr-auto my-0" onClick={handleAddSkill}>
 					Add New
 				</button>
 			</FieldSet>
-			{value?.map(x => (
+			{skillStack?.map(x => (
 				<Card data={x} />
 			))}
 		</>

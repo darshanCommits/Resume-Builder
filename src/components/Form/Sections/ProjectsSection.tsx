@@ -3,21 +3,21 @@ import useSavedCards from "@/hooks/useSavedCards";
 import { projects } from "@data/exampleResume";
 import Card from "@form/Card";
 import FormSectionWithModal from "@form/FormSectionWithModal";
-import { SingleSectionSchema } from "@models/resumeTypes";
+import { SectionSchema } from "@models/resumeTypes";
 
 export const ProjectSection = () => {
 	const sec = "projects";
 	const { formValue, setFormValue, resetFormValues } = useFormState<
 		typeof sec,
-		SingleSectionSchema<typeof sec>
-	>(projects[0]);
+		SectionSchema<typeof sec>
+	>(projects);
 
 	const { savedCards, addCard } = useSavedCards(sec, resetFormValues);
 
 	return (
 		<>
 			<FormSectionWithModal
-				placeholders={projects[0]}
+				placeholders={projects}
 				sec={sec}
 				formValues={formValue}
 				setFormValue={setFormValue}

@@ -1,24 +1,32 @@
 import FieldSet from "@components/Form/FieldSet";
-import { SectionProps } from "@models/propTypes";
-import { SectionKeys, SingleSectionSchema } from "@models/resumeTypes";
+import {
+	ResumeSchema,
+	SectionKeys,
+	SingleSectionTypes,
+} from "@models/resumeTypes";
 import { Button } from "@ui/Button";
 import FormSectionHeading from "@ui/FormSectionHeading";
 import Input from "@ui/Input";
 import { modalRefs, toggleDialog } from "@utils/utils";
 import Modal from "./Modal";
 
-function SectionWithModal<
-	T extends SectionKeys,
-	K extends SingleSectionSchema<T>,
->({
+function SectionWithModal<T extends SectionKeys>({
 	sec,
 	placeholders,
 	formValues,
 	setFormValue,
 	onClick,
-}: SectionProps<T, K> & {
+}: {
+	sec: T;
+	placeholders: ResumeSchema[T];
+	formValues: SingleSectionTypes[T];
+	setFormValue: (label: T, value: string) => void;
 	onClick?: () => void;
 }) {
+	const directPlaceholders = Array.isArray(placeholders)
+		? placeholders[0]
+		: placeholders;
+
 	return (
 		<FieldSet sec={sec}>
 			<Modal
@@ -27,7 +35,7 @@ function SectionWithModal<
 				toggleDialog={() => toggleDialog(modalRefs[sec])}
 			>
 				<FormSectionHeading sec={sec} />
-				{Object.entries(placeholders).map(([label, placeholder]) => {
+				{Object.entries(directPlaceholders).map(([label, placeholder]) => {
 					return (
 						<Input
 							section={sec}

@@ -1,14 +1,16 @@
 import { IoMdClose } from "react-icons/io";
 type CardProps = {
-	data: {
-		header: string;
-		footer: string;
-		date: string;
-	};
+	data:
+		| {
+				header: string;
+				footer: string;
+				date: string;
+		  }
+		| string;
 	onClick?: (e: React.MouseEventHandler<SVGElement>) => void;
 };
 
-export const Card = ({ data }: CardProps | string) => {
+export const Card = ({ data }: CardProps) => {
 	const commonStyles = "relative border-red border border-solid";
 
 	return (
