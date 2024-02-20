@@ -1,14 +1,4 @@
-import {
-	AboutSchema,
-	EducationSchema,
-	ExperienceSchema,
-	SocialSchema,
-	ProjectSchema,
-	ResumeSchema,
-	SkillSchema,
-} from "@models/resumeTypes";
-
-export const about: AboutSchema = {
+export const about = {
 	full_name: "Tyler Durden",
 	headline: "Soap Artiste & Mayhem Coordinator",
 	email: "tyler@fightclub.com",
@@ -19,7 +9,7 @@ export const about: AboutSchema = {
 		"To escape the existential angst of modernity, I've pioneered an underground movement fusing bare-knuckle boxing, explosive chemistry, and avant-garde soap craft. Through unconventional means, I foster personal awakening and self-actualization.",
 };
 
-export const social: SocialSchema[] = [
+export const social = [
 	{
 		network: "Fight Club",
 		username: "tylerd",
@@ -32,7 +22,7 @@ export const social: SocialSchema[] = [
 	},
 ];
 
-export const experiences: ExperienceSchema[] = [
+export const experiences = [
 	{
 		position: "Visionary & Cult Leader",
 		company: "Fight Club",
@@ -53,7 +43,7 @@ export const experiences: ExperienceSchema[] = [
 	},
 ];
 
-export const education: EducationSchema[] = [
+export const education = [
 	{
 		institution: "Fight Club",
 		type_of_study: "Underground Certificate",
@@ -76,7 +66,7 @@ export const education: EducationSchema[] = [
 	},
 ];
 
-export const skills: SkillSchema = [
+export const skills = [
 	"Underground Fighting",
 	"Explosive Chemistry",
 	"Leadership & Persuasion",
@@ -84,7 +74,7 @@ export const skills: SkillSchema = [
 	"Urban Survivalism",
 ];
 
-export const projects: ProjectSchema[] = [
+export const projects = [
 	{
 		name: "Project Mayhem",
 		date_or_date_range: "1999",
@@ -103,7 +93,7 @@ export const projects: ProjectSchema[] = [
 	},
 ];
 
-export const exampleResume: ResumeSchema = {
+export const exampleResume = {
 	about,
 	social,
 	experiences,
