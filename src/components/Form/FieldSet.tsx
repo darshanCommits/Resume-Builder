@@ -1,4 +1,4 @@
-import { SectionKeys } from "@models/resumeTypes";
+import { SectionKeys } from "@models/InferFromRecord";
 import { snakeToTitleCase } from "@utils/utils";
 import { ReactNode } from "react";
 

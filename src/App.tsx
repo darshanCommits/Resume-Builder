@@ -1,4 +1,5 @@
 import Resume from "@components/Resume/Index";
+
 import UserForm from "@form/UserForm";
 import { Allotment } from "allotment";
 
@@ -11,9 +12,7 @@ const App = () => {
 				<Allotment.Pane maxSize={250}>
 					<UserForm />
 				</Allotment.Pane>
-				<Allotment.Pane>
-					<Resume />
-				</Allotment.Pane>
+				<Resume />
 			</Allotment>
 		</body>
 	);

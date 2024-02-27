@@ -1,16 +1,13 @@
 import useFormState from "@/hooks/useFormState";
 import useSavedCards from "@/hooks/useSavedCards";
-import Card from "@form/Card";
-import { SectionSchema } from "@models/resumeTypes";
 import { social } from "@data/exampleResume";
+import Card from "@form/Card";
 import FormSectionWithModal from "@form/FormSectionWithModal";
 
 export const SocialSection = () => {
 	const sec = "social";
-	const { formValue, setFormValue, resetFormValues } = useFormState<
-		typeof sec,
-		SectionSchema<typeof sec>
-	>(social);
+	const { formValue, setFormValue, resetFormValues } =
+		useFormState<typeof sec>(social);
 
 	const { savedCards, addCard } = useSavedCards(sec, resetFormValues);
 

@@ -1,6 +1,5 @@
-import { SectionKeys } from "@models/resumeTypes";
+import { SectionKeys } from "@models/InferFromRecord";
 import { snakeToTitleCase } from "@utils/utils";
-import { ClassNameValue } from "tailwind-merge";
 
 type InputProps<T> = {
 	name: string | T;

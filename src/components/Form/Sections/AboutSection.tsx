@@ -1,8 +1,8 @@
 import useFormState from "@/hooks/useFormState";
-import { about } from "@data/exampleResume";
 import FieldSet from "@components/Form/FieldSet";
+import { about } from "@data/exampleResume";
+import { SectionKeys } from "@models/utilityTypes";
 import Input from "@ui/Input";
-import { SectionKeys } from "@models/resumeTypes";
 
 export const AboutSection = () => {
 	const sec = "about";
@@ -19,7 +19,7 @@ export const AboutSection = () => {
 						key={`${sec}__${label}`}
 						label={label}
 						placeholder={placeholder.toString()}
-						// @ts-ignore. I am done with this.
+						// @ts-ignore. I can't do this anymore
 						value={formValue[label]}
 						onChange={e => {
 							setFormValue(label as SectionKeys, e.target.value);

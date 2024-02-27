@@ -6,10 +6,7 @@ import {
 	skills,
 	social,
 } from "@data/exampleResume";
-
-export type InferFromRecord<T extends Record<string, unknown>> = {
-	[K in keyof T]: T[K] extends (infer U)[] ? U[] : T[K];
-};
+import { InferFromRecord } from "@models/utilityTypes";
 
 export type AboutSchema = InferFromRecord<typeof about>;
 export type SocialSchema = InferFromRecord<typeof social[number]>;
@@ -25,18 +22,4 @@ export type ResumeSchema = {
 	education: EducationSchema[];
 	projects: ProjectSchema[];
 	skills: SkillSchema;
-};
-
-export type SingleSectionTypes = {
-	[K in keyof ResumeSchema]: ResumeSchema[K] extends (infer U)[]
-		? U
-		: ResumeSchema[K];
-};
-
-export type SectionKeys = keyof ResumeSchema;
-
-export type SectionSchema<T extends SectionKeys> = ResumeSchema[T];
-
-export type RefObjectMap<T> = {
-	[key: string]: React.RefObject<T>;
 };

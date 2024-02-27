@@ -1,9 +1,6 @@
 import FieldSet from "@components/Form/FieldSet";
-import {
-	ResumeSchema,
-	SectionKeys,
-	SingleSectionTypes,
-} from "@models/resumeTypes";
+import { ResumeSchema } from "@models/resumeTypes";
+import { SectionKeys, SingleSectionTypes } from "@models/InferFromRecord";
 import { Button } from "@ui/Button";
 import FormSectionHeading from "@ui/FormSectionHeading";
 import Input from "@ui/Input";

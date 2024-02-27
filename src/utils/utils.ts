@@ -1,5 +1,5 @@
 import exampleResume from "@data/exampleResume";
-import { RefObjectMap, SectionKeys } from "@models/resumeTypes";
+import { RefObjectMap, SectionKeys } from "@models/utilityTypes";
 import { RefObject, createRef } from "react";
 
 export const capitalize = (word: string) =>

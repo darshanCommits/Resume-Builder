@@ -1,13 +1,7 @@
+import { SavedCard } from "@models/utilityTypes";
 import { IoMdClose } from "react-icons/io";
 type CardProps = {
-	data:
-		| {
-				header: string;
-				footer: string;
-				date: string;
-		  }
-		| string;
-	onClick?: (e: React.MouseEventHandler<SVGElement>) => void;
+	data: SavedCard;
 };
 
 export const Card = ({ data }: CardProps) => {
