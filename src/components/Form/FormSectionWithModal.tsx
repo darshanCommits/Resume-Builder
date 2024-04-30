@@ -1,6 +1,6 @@
 import FieldSet from "@components/Form/FieldSet";
-import { ResumeSchema } from "@models/resumeTypes";
-import { SectionKeys, SingleSectionTypes } from "@models/InferFromRecord";
+import { ResumeStore } from "@models/resumeTypes";
+import { SectionKeys, SingleSectionTypes } from "@models/utilityTypes";
 import { Button } from "@ui/Button";
 import FormSectionHeading from "@ui/FormSectionHeading";
 import Input from "@ui/Input";
@@ -15,7 +15,7 @@ function SectionWithModal<T extends SectionKeys>({
 	onClick,
 }: {
 	sec: T;
-	placeholders: ResumeSchema[T];
+	placeholders: ResumeStore[T];
 	formValues: SingleSectionTypes[T];
 	setFormValue: (label: T, value: string) => void;
 	onClick?: () => void;

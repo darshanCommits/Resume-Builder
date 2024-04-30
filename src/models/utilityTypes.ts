@@ -1,4 +1,4 @@
-import { ResumeSchema } from "./resumeTypes";
+import { ResumeStore } from "./resumeTypes";
 
 export type InferFromRecord<T extends Record<string, unknown>> = {
 	[K in keyof T]: T[K] extends (infer U)[] ? U[] : T[K];
@@ -9,12 +9,12 @@ export type SingleRecordResume<T extends SectionKeys> = Exclude<
 	string
 >;
 export type SingleSectionTypes = {
-	[K in keyof ResumeSchema]: ResumeSchema[K] extends (infer U)[]
+	[K in keyof ResumeStore]: ResumeStore[K] extends (infer U)[]
 		? U
-		: ResumeSchema[K];
+		: ResumeStore[K];
 };
 
-export type SectionKeys = keyof ResumeSchema;
+export type SectionKeys = keyof ResumeStore;
 
 export type RefObjectMap<T> = {
 	[key: string]: React.RefObject<T>;

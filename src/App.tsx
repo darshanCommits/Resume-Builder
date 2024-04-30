@@ -6,6 +6,9 @@ import { Allotment } from "allotment";
 // <aside className="bg-[#0D1117] text-white p-4 w-72"></aside>
 // <main className="h-full w-full"></main>
 const App = () => {
+	const br = `date rn is ${Date.now()} `;
+
+	console.log(br);
 	return (
 		<body className="h-screen w-screen">
 			<Allotment>

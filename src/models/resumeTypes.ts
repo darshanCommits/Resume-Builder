@@ -15,7 +15,7 @@ export type EducationSchema = InferFromRecord<typeof education[number]>;
 export type ProjectSchema = InferFromRecord<typeof projects[number]>;
 export type SkillSchema = typeof skills;
 
-export type ResumeSchema = {
+export type ResumeStore = {
 	about: AboutSchema;
 	social: SocialSchema[];
 	experiences: ExperienceSchema[];
